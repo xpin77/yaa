@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+    .login-container h2 {
+      margin-bottom: 20px;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .login-container button:hover {
+      background-color: #0056b3;
+    }
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    #adminMenu {
+      display: none;
+      margin-top: 20px;
+      text-align: left;
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    #adminMenu button {
+      background-color: #28a745;
+      border: none;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #adminMenu button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p class="error-message" id="errorMessage"></p>
+  </div>
+
+  <!-- Admin Menu after login -->
+  <div id="adminMenu">
+    <h3>Menu Admin</h3>
+    <button onclick="showAbout()">Tentang Pembuat Website</button>
+    <p id="aboutText" style="display:none;">Website ini dimiliki oleh Xpin.</p>
+  </div>
+
+  <script>
+    // Username dan password yang benar
+    const validUsername = 'admin';
+    const validPassword = '12345';
+
+    // Ambil elemen-elemen dari form
+    const loginForm = document.getElementById('loginForm');
+    const usernameField = document.getElementById('username');
+    const passwordField = document.getElementById('password');
+    const errorMessage = document.getElementById('errorMessage');
+    const adminMenu = document.getElementById('adminMenu');
+    const aboutText = document.getElementById('aboutText');
+
+    // Event listener saat form login disubmit
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Mencegah reload halaman
+
+      // Ambil username dan password yang dimasukkan
+      const username = usernameField.value;
+      const password = passwordField.value;
+
+      // Cek apakah username dan password valid
+      if (username === validUsername && password === validPassword) {
+        alert('Login berhasil!');
+        errorMessage.textContent = ''; // Hapus pesan error
+        // Sembunyikan form login dan tampilkan menu admin
+        document.querySelector('.login-container').style.display = 'none';
+        adminMenu.style.display = 'block'; // Tampilkan menu admin
+      } else {
+        errorMessage.textContent = 'Username atau password salah!';
+      }
+    });
+
+    // Fungsi untuk menampilkan informasi tentang pembuat website
+    function showAbout() {
+      aboutText.style.display = 'block'; // Menampilkan teks tentang pembuat website
+    }
+  </script>
+
+</body>
+</html>
